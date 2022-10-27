@@ -1,0 +1,186 @@
+<!Doctype html>
+
+<head>
+    <title>Khushi</title>
+    <link rel="stylesheet" href="home.css">
+    <link rel="shortcut icon" href="logo.png">
+
+
+</head>
+
+<body>
+    <!--navbar-->
+    <nav class="navbar">
+        <img id="logo" src="logo.png">
+        <a class="navbar-brand" href="home.html">Disk Scheduling</a>
+    </nav>
+
+    <!--visualization-->
+    <div class="block1">
+        <div class="overlay"></div>
+        <div class="heading">
+            <h1 style="text-align: center;">FCFS </h1>
+            <h1 style="text-align: center; font-size:20px; margin:30px;">First Come First Serve </h1>
+        </div>
+
+        <div class="arrow-box">
+            <img src="arrow.png" alt="downward Arrow">
+        </div>
+    </div>
+    <hr>
+    <!-- about -->
+
+    <div class="about-k">
+        <h1 style="margin: 0px; align-items:center">About</h1>
+    </div>
+    <div class="About-part">
+        <div class="card-k">
+            <a class="card-title-k">FCFS</a>
+            <div class="card-body">
+                <div class="card-text-k">
+                    <p>It is the simplest of all the Disk Scheduling Algorithms. In FCFS, the requests are addressed in
+                        the order they arrive in the disk queue.</p><br>
+                </div>
+
+                <div style="font-size: 1.5rem; padding-left: 10px;">Advantages </div>
+
+                <p class="card-text-k">
+                <ol>
+                    <li>
+                        In FCFS disk scheduling, there is no indefinite delay.
+                    </li><br>
+                    <li>
+                        There is no starvation in FCFS disk scheduling because each request gets a fair chance.
+                    </li>
+                </ol>
+                </p>
+
+                <div style="font-size: 1.5rem; padding-left: 10px;">Disadvantages </div>
+                <p class="card-text-k">
+                <ol>
+                    <li>
+                        FCFS scheduling is not offered as the best service.
+                    </li><br>
+                    <li>
+                        In FCFS, scheduling disk time is not optimized.
+                    </li><br>
+                </ol>
+                </p>
+            </div>
+        </div>
+
+
+        <div class="card-k">
+            <div class="card-title-k">Algorithms </div>
+            <div class="card-body">
+                <p class="card-text-k">
+                <ol>
+                    <li>A request array contains the indexes of the tracks that have been requested in ascending
+                        order of time interval.
+                        The position of the read/ write head is 'HEAD'.
+                    </li><br>
+                    <li>
+                        These tracks are addressed one by one in default order and the absolute distance of the
+                        track from the head is calculated.
+                    </li><br>
+                    <li>
+                        The total seek count is incremented with this distance.
+                    </li><br>
+                    <li>
+                        Go to step 2 until all the tracks are not been addressed.
+                    </li><br>
+                </ol>
+                </p>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <!-- implementation -->
+
+    <div class="last-block">
+        <div class="about-k">
+            <h1 style="margin: 0px; align-items:center">Implementation</h1>
+        </div>
+
+        <div id="alert-wrapper"></div>
+
+        <div class="running-algo">
+
+            <form>
+                <div id="controls">
+                    <div class="mb-3">
+                        <label for="formGroupExampleInput" class="form-label"> No. Of Requests</label><br>
+                        <input type="number" class="form-control" id="requests">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="formGroupExampleInput" class="form-label"> Total Tracks</label><br>
+                        <input type="number" class="form-control" id="max-track" placeholder="Maximum Track Number">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="formGroupExampleInput" class="form-label"> Head position</label><br>
+                        <input type="number" class="form-control" id="head" data-bs-toggle="popover"
+                            data-bs-trigger="hover" title="important!"
+                            data-bs-content="The value of head position should not lie outside the range track nunber.">
+                    </div>
+
+                    <!-- <div class="mb-3">
+            <label for="formGroupExampleInput" class="form-label"> Choose Direction</label><br>
+            <select> <option> Left </option> <option> Right </option> </select>
+            </div> -->
+
+                    <div class="mb-3">
+                        <label for="formGroupExampleInput" class="form-label"> Tracks</label><br>
+                        <input type="text" placeholder="Track requests" class="form-control" id="tracks"
+                            data-bs-toggle="popover" data-bs-trigger="hover" title="important!"
+                            data-bs-content="Any track request should not exceed the maximum possible track number."></p>
+                    </div>
+
+                    <div class="algo-buttons">
+                        <input id="reset-button" style="cursor:pointer; width:50px;" type="reset" class="btn btn-dark form-control last_button"
+                            style="margin: 10px;">
+                        <button id="run" type="button" class="btn btn-dark last_button disabled"
+                            data-bs-toggle="popover" data-bs-trigger="hover" title="Warning!"
+                            data-bs-content="None of the fields above should be empty. They should not contain any alphabetic or special character!"
+                            style="margin: 20px; cursor:pointer; width:50px;">Run</button>
+                        <!-- <button id="run" >Run</button> -->
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class='chart-wrapper'>
+
+            <div id="image" class="chart-display">
+                <div class="show-element" id="chart-image">
+                    CHART WILL APPEAR HERE
+                </div>
+                <div id="chart-container" class="show-element">
+                    <div class="chartres">
+                        <canvas id="chart"></canvas>
+                    </div>
+
+                    <div id="seekShow">
+                        <div id="seek" style="width: 80%; height: 10%; text-align: center;" data-bs-toggle="popover"
+                            data-bs-placement="left" data-bs-trigger="click" title="Important!"
+                            data-bs-content="Considering the successive track seek time as 1ms.">
+                            <h4 id="temp"> </h4>
+                            <h4 id="temp1"> </h4>
+                        </div>
+                        <div id="download-buttons">
+                            <div id="dImageIcon"></div>
+                            <div id="dPDFIcon"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+    <script src="Chart.min.js"></script>
+    <!-- <script src="search.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
+    <script src="fcfs.js"></script>
+</body>
